@@ -3,88 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Dika Haryand Pratama | Portofolio Demo</title>
+    <title>Pertanyaan Cinta</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            overflow: hidden;
+        }
+
+        .container {
+            background: #f9f9f9;
+            padding: 20px;
+            display: inline-block;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .buttons {
+            margin-top: 20px;
+            position: relative;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        #yes {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #no {
+            background-color: #f44336;
+            color: white;
+            position: absolute;
+        }
+
+        #popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        #popup img {
+            width: 100px;
+            height: 100px;
+        }
+
+        /* CSS untuk layar kecil (mobile) */
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+            }
+
+            button {
+                font-size: 16px;
+                padding: 8px 15px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="logo">Logo</div>
-        <ul class="nav-links">
-            <li><a href="#" id="home-button">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contacts">Contacts</a></li>
-        </ul>
-        <div class="menu-toggle" id="mobile-menu">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
+    <div class="container">
+        <h2>Apakah kaka suka dengan aku?</h2>
+        <div class="buttons">
+            <button id="yes">Iya</button>
+            <button id="no">Tidak</button>
         </div>
-    </nav>
+    </div>
 
-    <section class="about-section" id="about">
-        <div class="container">
-            <h1>Tentang Saya</h1>
-            <div class="profile-image">
-                <img src="profile.jpg" alt="Foto Profil" />
-            </div>
-            <p>Halo! Saya <strong>Dika Haryanda Pratama</strong>, seorang pengembang web dan perangkat lunak yang berdedikasi. Saya menjalankan perusahaan: <strong>HDStudio Code</strong> untuk pembuatan website dan pengembangan perangkat lunak.</p>
-            
-            <h2>HDStudio Code</h2>
-            <p>Di HDStudio Code, saya fokus pada pembuatan website yang responsif dan menarik. Setiap proyek yang saya kerjakan dirancang dengan perhatian pada detail dan pengalaman pengguna.</p>
-            
-            <h2>Sapi Terbang Studio (Divisi)</h2>
-            <p>Sementara itu, di Sapi Terbang Studio, saya mengembangkan perangkat lunak yang membantu bisnis dan individu mencapai tujuan mereka dengan lebih efisien.</p>
-            
-            <h2>Bahasa Pemrograman yang Dikuasai</h2>
-            <ul>
-                <li>Python</li>
-                <li>PHP</li>
-                <li>Java</li>
-            </ul>
-            
-            <h2>Visi dan Misi</h2>
-            <p>Visi saya adalah untuk menjadi pengembang yang diakui di industri ini dengan memberikan solusi teknologi yang inovatif dan efektif.</p>
-            
-        </div>
-    </section>
+    <div id="popup">
+        <img src="https://i.pinimg.com/originals/9f/b3/12/9fb3123b80d5bd7b90f4accc4f542e04.gif" alt="Cute">
+        <p>Terimakasih kaka ❤️</p>
+    </div>
 
-    <section class="projects-section" id="projects">
-        <div class="container">
-            <h1>Projek Saya</h1>
-            <p>Not Found</p>
-        </div>
-    </section>
+    <script>
+        document.getElementById("yes").addEventListener("click", function() {
+            document.getElementById("popup").style.display = "block";
+        });
 
-    <section class="contacts-section" id="contacts">
-        <div class="container">
-            <h1>Kontak Saya</h1>
-            <form id="contact-form">
-                <label for="name">Nama:</label>
-                <input type="text" id="name" name="name" required>
-    
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-    
-                <label for="message">Pesan:</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-    
-                <button type="submit">Kirim Pesan</button>
-            </form>
-            <div class="social-links">
-                <h2>Temukan Saya di:</h2>
-                <ul>
-                    <li><a href="https://instagram.com/dika.kita" target="_blank">Instagram</a></li>
-                    <li><a href="https://github.com/dikdik.kita" target="_blank">GitHub</a></li>
-                    <li><a href="https://youtube.com/@DikaHD5" target="_blank">YouTube</a></li>
-                </ul>
-            </div>
-        </div>
-    </section>
+        let btnNo = document.getElementById("no");
 
-    <canvas id="particleCanvas"></canvas>
+        function moveButton() {
+            let maxWidth = window.innerWidth - btnNo.clientWidth - 20;
+            let maxHeight = (window.innerHeight * 0.6) - btnNo.clientHeight - 20; // Batas maksimal 50vh
 
-    <script src="script.js"></script>
+            let randomX = Math.floor(Math.random() * maxWidth);
+            let randomY = Math.floor(Math.random() * maxHeight);
+
+            btnNo.style.left = randomX + "px";
+            btnNo.style.top = randomY + "px";
+        }
+
+        btnNo.addEventListener("mouseover", moveButton);
+        btnNo.addEventListener("click", moveButton); 
+        btnNo.addEventListener("touchstart", moveButton); // Agar bekerja di layar sentuh
+    </script>
+
 </body>
 </html>
